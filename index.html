@@ -1,17 +1,663 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant EL GADI VIP</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Restaurant EL GADI • Gastronomie & Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-hover: #b5952f;
+            --dark-bg: #111111;
+            --card-bg: #1c1c1c;
+            --light-text: #f5f5f5;
+            --muted-text: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: 'Playfair Display', 'Cairo', serif;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), 
+                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #dddddd;
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--dark-bg);
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--light-text);
+            color: var(--light-text);
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline:hover {
+            background: var(--light-text);
+            color: var(--dark-bg);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header span {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-top: 10px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--muted-text);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        /* --- MENU SECTION --- */
+        .menu-section {
+            background-color: #161616;
+        }
+
+        .menu-category-title {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin: 40px 0 25px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .dish-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .dish-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .dish-info {
+            padding: 22px;
+        }
+
+        .dish-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .dish-header h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .dish-price {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .dish-info p {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESERVATION SECTION --- */
+        .reservation-box {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            padding: 70px 40px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .res-form {
+            max-width: 700px;
+            margin: 35px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .res-form input, .res-form select {
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .res-form input::placeholder {
+            color: #cccccc;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #0a0a0a;
+            padding: 60px 8% 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p {
+            color: var(--muted-text);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--muted-text);
+            font-size: 0.85rem;
+        }
+
+        .copyright span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.6rem; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Restaurant EL GADI VIP</h1>
-        <div class="subtitle">Gastronomie & Sushi Bar d'Exception</div>
-        <p>L'adresse incontournable du luxe et des saveurs raffinées.<br>Conçu par <strong>Mohammed El Gadi (محمد الكادي)</strong></p>
-        <a href="https://wa.me/212600000000" class="btn">Réserver une Table VIP via WhatsApp</a>
-    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">EL GADI</div>
+        <ul class="nav-links">
+            <li><a href="#home" id="nav-home">Accueil</a></li>
+            <li><a href="#about" id="nav-about">Notre Histoire</a></li>
+            <li><a href="#menu" id="nav-menu">La Carte</a></li>
+            <li><a href="#reservation" id="nav-res">Réservation</a></li>
+        </ul>
+        <button class="lang-btn" onclick="toggleLanguage()">العربية / FR</button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero" id="home">
+        <div class="hero-subtitle" id="hero-sub">EXPÉRIENCE CULINAIRE D'EXCEPTION</div>
+        <h1 id="hero-title">Restaurant EL GADI</h1>
+        <p id="hero-desc">Découvrez l'art de la haute gastronomie dans un cadre raffiné au cœur d'Oujda. Des saveurs authentiques préparées avec passion par nos chefs.</p>
+        <div class="hero-btns">
+            <a href="#menu" class="btn-gold" id="btn-discover">Découvrir la Carte</a>
+            <a href="#reservation" class="btn-outline" id="btn-book">Réserver une Table</a>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="about-grid">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=900&q=80" alt="Chef Restaurant EL GADI">
+            </div>
+            <div class="about-text">
+                <span style="color: var(--gold); font-weight: 600; letter-spacing: 2px;" id="about-tag">L'ART DE RECEVOIR</span>
+                <h3 id="about-title">Une Tradition Réinventée</h3>
+                <p id="about-p1">Au Restaurant EL GADI, chaque plat raconte une histoire. Nous sélectionnons quotidiennement les meilleurs produits frais du terroir pour vous offrir une expérience gastronomique inoubliable.</p>
+                <p id="about-p2">Que ce soit pour un dîner romantique, un repas d'affaires ou une célébration en famille, notre équipe vous accueille avec élégance et discrétion.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu-section" id="menu">
+        <div class="section-header">
+            <span id="menu-tag">SAVEURS & CRÉATIONS</span>
+            <h2 id="menu-title">Notre Carte Gastronomique</h2>
+        </div>
+
+        <!-- Category 1: Entrées -->
+        <h3 class="menu-category-title" id="cat-entrees">Entrées Raffinées</h3>
+        <div class="menu-grid">
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Salade Royale" class="dish-img">
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h4 id="d1-name">Salade Royale aux Gambas</h4>
+                        <span class="dish-price">95 DH</span>
+                    </div>
+                    <p id="d1-desc">Gambas grillées, avocat frais, jeunes pousses, vinaigrette aux agrumes et sésame torréfié.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=800&q=80" alt="Carpaccio" class="dish-img">
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h4 id="d2-name">Carpaccio de Bœuf Truffé</h4>
+                        <span class="dish-price">110 DH</span>
+                    </div>
+                    <p id="d2-desc">Fines tranches de filet de bœuf, copeaux de parmesan 24 mois, huile de truffe noire.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 2: Plats Principaux -->
+        <h3 class="menu-category-title" id="cat-plats">Plats Signatures</h3>
+        <div class="menu-grid">
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Entrecôte" class="dish-img">
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h4 id="d3-name">Entrecôte Grillée Maturée</h4>
+                        <span class="dish-price">185 DH</span>
+                    </div>
+                    <p id="d3-desc">Pièce de bœuf d'exception (300g), purée maison à l'huile d'olive, sauce poivre vert.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80" alt="Saumon" class="dish-img">
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h4 id="d4-name">Pavé de Saumon Rôti</h4>
+                        <span class="dish-price">165 DH</span>
+                    </div>
+                    <p id="d4-desc">Saumon frais glacé au miel et citron, risotto crémeux aux asperges vertes.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&w=800&q=80" alt="Tajine Royal" class="dish-img">
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h4 id="d5-name">Souris d'Agneau Confite</h4>
+                        <span class="dish-price">175 DH</span>
+                    </div>
+                    <p id="d5-desc">Cuisson lente 6 heures aux épices douces, pruneaux caramélisés et amandes grillées.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 3: Desserts -->
+        <h3 class="menu-category-title" id="cat-desserts">Desserts & Douceurs</h3>
+        <div class="menu-grid">
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80" alt="Fondant Chocolat" class="dish-img">
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h4 id="d6-name">Fondant au Chocolat Valrhona</h4>
+                        <span class="dish-price">65 DH</span>
+                    </div>
+                    <p id="d6-desc">Cœur coulant au chocolat noir 70%, accompagné de sa glace vanille de Madagascar.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80" alt="Panna Cotta" class="dish-img">
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h4 id="d7-name">Panna Cotta Fruits Rouges</h4>
+                        <span class="dish-price">55 DH</span>
+                    </div>
+                    <p id="d7-desc">Crème onctueuse à la vanille Bourbon, coulis frais de framboises et fraises des bois.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESERVATION SECTION -->
+    <section id="reservation">
+        <div class="reservation-box">
+            <span style="color: var(--gold); letter-spacing: 2px; font-weight: 600;" id="res-tag">VOTRE TABLE VOUS ATTEND</span>
+            <h2 style="font-size: 2.5rem; margin-top: 10px;" id="res-title">Réservez Votre Expérience</h2>
+            <p style="color: #cccccc; max-width: 600px; margin: 15px auto 0;" id="res-desc">Réservez en ligne en quelques secondes ou contactez-nous directement sur WhatsApp pour toute demande spéciale.</p>
+            
+            <form class="res-form" onsubmit="event.preventDefault(); alert('Demande de réservation envoyée avec succès !');">
+                <input type="text" placeholder="Votre Nom / الاسم الكامل" required>
+                <input type="tel" placeholder="Téléphone / رقم الهاتف" required>
+                <input type="date" required>
+                <select>
+                    <option>2 Personnes / شخصين</option>
+                    <option>4 Personnes / 4 أشخاص</option>
+                    <option>6+ Personnes / أكثر من 6</option>
+                </select>
+                <button type="submit" class="btn-gold" style="border: none; cursor: pointer;" id="btn-submit">Confirmer</button>
+            </form>
+
+            <div style="margin-top: 30px;">
+                <a href="https://wa.me/" target="_blank" style="color: #25d366; text-decoration: none; font-weight: 700; font-size: 1.1rem;">
+                    <i class="fa-brands fa-whatsapp"></i> <span id="wa-direct">Réservation Rapide via WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Restaurant EL GADI</h4>
+                <p id="f-about">Une adresse incontournable pour les amoureux de la grande cuisine à Oujda.</p>
+            </div>
+            <div class="footer-col">
+                <h4 id="f-hours-title">Horaires d'Ouverture</h4>
+                <p id="f-hours1">Lundi - Vendredi : 12h00 - 23h30</p>
+                <p id="f-hours2">Samedi - Dimanche : 12h00 - 00h30</p>
+            </div>
+            <div class="footer-col">
+                <h4 id="f-contact-title">Contact & Adresse</h4>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--gold);"></i> Boulevard Mohammed V, Oujda</p>
+                <p><i class="fa-solid fa-phone" style="color: var(--gold);"></i> +212 5 36 00 00 00</p>
+            </div>
+        </div>
+        <div class="copyright">
+            Conception & Développement Web Sur-Mesure par <span>Mohammed EL Gadi</span> • Oujda 2026
+        </div>
+    </footer>
+
+    <script>
+        let isArabic = false;
+        function toggleLanguage() {
+            isArabic = !isArabic;
+            const html = document.documentElement;
+            
+            if (isArabic) {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                
+                document.getElementById('nav-home').innerText = "الرئيسية";
+                document.getElementById('nav-about').innerText = "قصتنا";
+                document.getElementById('nav-menu').innerText = "قائمة الطعام";
+                document.getElementById('nav-res').innerText = "حجز طاولة";
+                
+                document.getElementById('hero-sub').innerText = "تجربة طهي استثنائية وراقية";
+                document.getElementById('hero-title').innerText = "مطعم الكادي الفاخر";
+                document.getElementById('hero-desc').innerText = "اكتشف فن الطبخ الرفيع في أجواء راقية في قلب مدينة وجدة. نكهات أصيلة محضرة بشغف على يد أمهر الطهاة.";
+                document.getElementById('btn-discover').innerText = "اكتشف القائمة";
+                document.getElementById('btn-book').innerText = "احجز طاولتك";
+                
+                document.getElementById('about-tag').innerText = "فن الضيافة";
+                document.getElementById('about-title').innerText = "أصالة برؤية عصرية";
+                document.getElementById('about-p1').innerText = "في مطعم الكادي، كل طبق يحكي قصة. نختار يومياً أجود المنتجات الطازجة لنقدم لكم تجربة تذوق لا تُنسى.";
+                document.getElementById('about-p2').innerText = "سواء لعشاء رومانسي، غداء عمل أو احتفال عائلي، فريقنا يستقبلكم بكل رقي واهتمام.";
+                
+                document.getElementById('menu-tag').innerText = "نكهات وإبداعات";
+                document.getElementById('menu-title').innerText = "قائمة الطعام الفاخرة";
+                document.getElementById('cat-entrees').innerText = "المقبلات الراقية";
+                document.getElementById('cat-plats').innerText = "الأطباق الرئيسية";
+                document.getElementById('cat-desserts').innerText = "الحلويات الفاخرة";
+                
+                document.getElementById('d1-name').innerText = "سلطة ملكية بالقمرون";
+                document.getElementById('d1-desc').innerText = "قمرون مشوي، أفوكادو طازج، خضروات ورقية، صلصة الحمضيات والسمسم المحمص.";
+                document.getElementById('d2-name').innerText = "كارباتشيو اللحم بالكمأة";
+                document.getElementById('d2-desc').innerText = "شرائح رقيقة من فيليه اللحم، رقائق جبن البارميزان، زيت الكمأة السوداء.";
+                document.getElementById('d3-name').innerText = "ستيك أنتركوت مشوي";
+                document.getElementById('d3-desc').innerText = "قطعة لحم بقري فاخرة (300 غرام)، بطاطس مهروسة بزيت الزيتون، صلصة الفلفل الأخضر.";
+                document.getElementById('d4-name').innerText = "فيليه السلمون المحمر";
+                document.getElementById('d4-desc').innerText = "سلمون طازج بالعسل والليمون، مع ريزوتو كريمي بالهليون الأخضر.";
+                document.getElementById('d5-name').innerText = "كتف خروف مطهو ببطء";
+                document.getElementById('d5-desc').innerText = "طهي هادئ لمدة 6 ساعات بالتوابل، مع البرقوق المعسل واللوز المقلي.";
+                document.getElementById('d6-name').innerText = "فوندان الشوكولاتة الفاخرة";
+                document.getElementById('d6-desc').innerText = "شوكولاتة سوداء 70% ذائبة، تقدم مع آيس كريم الفانيليا الطبيعية.";
+                document.getElementById('d7-name').innerText = "باناكوتا بالفواكه الحمراء";
+                document.getElementById('d7-desc').innerText = "كريمة الفانيليا الناعمة مع صلصة التوت والفراولة الطازجة.";
+                
+                document.getElementById('res-tag').innerText = "طاولتك بانتظارك";
+                document.getElementById('res-title').innerText = "احجز تجربتك الآن";
+                document.getElementById('res-desc').innerText = "احجز طاولتك عبر الإنترنت في ثوانٍ أو تواصل معنا مباشرة عبر واتساب لأي طلب خاص.";
+                document.getElementById('btn-submit').innerText = "تأكيد الحجز";
+                document.getElementById('wa-direct').innerText = "حجز سريع عبر واتساب";
+                
+                document.getElementById('f-about').innerText = "الوجهة الأولى لعشاق المطبخ الراقي في مدينة وجدة.";
+                document.getElementById('f-hours-title').innerText = "أوقات العمل";
+                document.getElementById('f-hours1').innerText = "الإثنين - الجمعة : 12:00 ظهراً - 11:30 ليلاً";
+                document.getElementById('f-hours2').innerText = "السبت - الأحد : 12:00 ظهراً - 12:30 ليلاً";
+                document.getElementById('f-contact-title').innerText = "العنوان والتواصل";
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'fr');
+                
+                document.getElementById('nav-home').innerText = "Accueil";
+                document.getElementById('nav-about').innerText = "Notre Histoire";
+                document.getElementById('nav-menu').innerText = "La Carte";
+                document.getElementById('nav-res').innerText = "Réservation";
+                
+                document.getElementById('hero-sub').innerText = "EXPÉRIENCE CULINAIRE D'EXCEPTION";
+                document.getElementById('hero-title').innerText = "Restaurant EL GADI";
+                document.getElementById('hero-desc').innerText = "Découvrez l'art de la haute gastronomie dans un cadre raffiné au cœur d'Oujda. Des saveurs authentiques préparées avec passion par nos chefs.";
+                document.getElementById('btn-discover').innerText = "Découvrir la Carte";
+                document.getElementById('btn-book').innerText = "Réserver une Table";
+                
+                document.getElementById('about-tag').innerText = "L'ART DE RECEVOIR";
+                document.getElementById('about-title').innerText = "Une Tradition Réinventée";
+                document.getElementById('about-p1').innerText = "Au Restaurant EL GADI, chaque plat raconte une histoire. Nous sélectionnons quotidiennement les meilleurs produits frais du terroir pour vous offrir une expérience gastronomique inoubliable.";
+                document.getElementById('about-p2').innerText = "Que ce soit pour un dîner romantique, un repas d'affaires ou une célébration en famille, notre équipe vous accueille avec élégance et discrétion.";
+                
+                document.getElementById('menu-tag').innerText = "SAVEURS & CRÉATIONS";
+                document.getElementById('menu-title').innerText = "Notre Carte Gastronomique";
+                document.getElementById('cat-entrees').innerText = "Entrées Raffinées";
+                document.getElementById('cat-plats').innerText = "Plats Signatures";
+                document.getElementById('cat-desserts').innerText = "Desserts & Douceurs";
+                
+                document.getElementById('d1-name').innerText = "Salade Royale aux Gambas";
+                document.getElementById('d1-desc').innerText = "Gambas grillées, avocat frais, jeunes pousses, vinaigrette aux agrumes et sésame torréfié.";
+                document.getElementById('d2-name').innerText = "Carpaccio de Bœuf Truffé";
+                document.getElementById('d2-desc').innerText = "Fines tranches de filet de bœuf, copeaux de parmesan 24 mois, huile de truffe noire.";
+                document.getElementById('d3-name').innerText = "Entrecôte Grillée Maturée";
+                document.getElementById('d3-desc').innerText = "Pièce de bœuf d'exception (300g), purée maison à l'huile d'olive, sauce poivre vert.";
+                document.getElementById('d4-name').innerText = "Pavé de Saumon Rôti";
+                document.getElementById('d4-desc').innerText = "Saumon frais glacé au miel et citron, risotto crémeux aux asperges vertes.";
+                document.getElementById('d5-name').innerText = "Souris d'Agneau Confite";
+                document.getElementById('d5-desc').innerText = "Cuisson lente 6 heures aux épices douces, pruneaux caramélisés et amandes grillées.";
+                document.getElementById('d6-name').innerText = "Fondant au Chocolat Valrhona";
+                document.getElementById('d6-desc').innerText = "Cœur coulant au chocolat noir 70%, accompagné de sa glace vanille de Madagascar.";
+                document.getElementById('d7-name').innerText = "Panna Cotta Fruits Rouges";
+                document.getElementById('d7-desc').innerText = "Crème onctueuse à la vanille Bourbon, coulis frais de framboises et fraises des bois.";
+                
+                document.getElementById('res-tag').innerText = "VOTRE TABLE VOUS ATTEND";
+                document.getElementById('res-title').innerText = "Réservez Votre Expérience";
+                document.getElementById('res-desc').innerText = "Réservez en ligne en quelques secondes ou contactez-nous directement sur WhatsApp pour toute demande spéciale.";
+                document.getElementById('btn-submit').innerText = "Confirmer";
+                document.getElementById('wa-direct').innerText = "Réservation Rapide via WhatsApp";
+                
+                document.getElementById('f-about').innerText = "Une adresse incontournable pour les amoureux de la grande cuisine à Oujda.";
+                document.getElementById('f-hours-title').innerText = "Horaires d'Ouverture";
+                document.getElementById('f-hours1').innerText = "Lundi - Vendredi : 12h00 - 23h30";
+                document.getElementById('f-hours2').innerText = "Samedi - Dimanche : 12h00 - 00h30";
+                document.getElementById('f-contact-title').innerText = "Contact & Adresse";
+            }
+        }
+    </script>
 </body>
 </html>
